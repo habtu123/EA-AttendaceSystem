@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,7 +44,7 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@GetMapping(value = "/courseofferings/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public CourseOffering getCourseOffering(long courseOfferingId) {
+	public CourseOffering getCourseOffering(@PathVariable long courseOfferingId) {
 		return courseOfferingService.getCourseOffering(courseOfferingId);
 	}
 
@@ -54,7 +55,7 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@GetMapping(value = "/courseofferings/course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public List<CourseOffering> getCourseOfferings(long courseId) {
+	public List<CourseOffering> getCourseOfferings(@PathVariable long courseId) {
 		return courseOfferingService.getCourseOfferings(courseId);
 	}
 
@@ -76,9 +77,8 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@DeleteMapping(value = "/courseofferings/course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public void deleteCourseOffering(long courseOfferingId) {
+	public void deleteCourseOffering(@PathVariable long courseOfferingId) {
 		courseOfferingService.deleteCourseOffering(courseOfferingId);
-
 	}
 
 	@ApiOperation(value = "Update a course offering", response = CourseOffering.class)

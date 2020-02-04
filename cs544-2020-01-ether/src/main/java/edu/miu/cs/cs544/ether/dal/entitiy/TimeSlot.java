@@ -15,10 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 public @Data  class TimeSlot {
     @Id
-    private String abberiviation;
+    private String abbereviation;
     private String description;
     @Temporal(TemporalType.TIME)
-    private Date startTimel;
+    private Date startTime;
     @Temporal(TemporalType.TIME)
     private Date endTime;
 }

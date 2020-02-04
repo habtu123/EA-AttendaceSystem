@@ -19,7 +19,7 @@ public class Attendance {
     private Long id;
     @ManyToOne()
     @JoinColumn(name = "barCodeId", referencedColumnName = "barCodeId")
-    private  Student barcodeId;
+    private Student student;
     @Temporal(TemporalType.DATE)
     private Date date;
     @ManyToOne
