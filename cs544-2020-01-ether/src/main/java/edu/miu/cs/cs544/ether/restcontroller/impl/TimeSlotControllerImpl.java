@@ -1,6 +1,5 @@
 package edu.miu.cs.cs544.ether.restcontroller.impl;
 
-import edu.miu.cs.cs544.ether.dal.Greeting;
 import edu.miu.cs.cs544.ether.dal.entitiy.TimeSlot;
 import edu.miu.cs.cs544.ether.restcontroller.TimeSlotController;
 import edu.miu.cs.cs544.ether.service.TimeSlotService;
