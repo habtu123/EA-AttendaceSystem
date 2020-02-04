@@ -23,12 +23,12 @@ public class GreetingControllerImpl implements GreetingService {
     @Autowired
     private FortuneService fortuneService;
 
-    @ApiOperation(value = "View a list of available student", response = Greeting.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @GetMapping(value = "/getFortune", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ApiOperation(value = "View a list of available student", response = Greeting.class)
+//    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+//            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+//            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+//            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+//    @GetMapping(value = "/getFortune", produces = MediaType.APPLICATION_JSON_VALUE)
     public Greeting getFortune(){
        return  fortuneService.getFortune();
     }
