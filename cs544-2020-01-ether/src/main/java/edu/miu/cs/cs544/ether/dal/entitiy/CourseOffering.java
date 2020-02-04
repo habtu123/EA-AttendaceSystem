@@ -16,6 +16,7 @@ public class CourseOffering {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long courseOfferingId;
     @ManyToOne
     private Course course;
     @Temporal(TemporalType.DATE)
