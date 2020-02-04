@@ -3,7 +3,7 @@ package edu.miu.cs.cs544.ether.dal.entitiy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sun.rmi.runtime.Log;
+
 
 import javax.persistence.*;
 import java.util.Date;
