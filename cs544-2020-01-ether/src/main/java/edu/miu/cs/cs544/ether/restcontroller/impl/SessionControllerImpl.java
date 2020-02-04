@@ -1,7 +1,7 @@
 package edu.miu.cs.cs544.ether.restcontroller.impl;
 
 import edu.miu.cs.cs544.ether.dal.entitiy.Session;
-import edu.miu.cs.cs544.ether.service.customexpection.SessionController;
+import edu.miu.cs.cs544.ether.restcontroller.SessionController;
 import edu.miu.cs.cs544.ether.service.SessionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
