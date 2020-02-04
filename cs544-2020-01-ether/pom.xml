@@ -8,11 +8,11 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cs544-labs</groupId>
-    <artifactId>cs544-lab01-greeting</artifactId>
+    <groupId>cs544-2020-01-ether-group</groupId>
+    <artifactId>cs544-2020-01-ether</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>cs544-lab01-greeting</name>
-    <description>Demo project for Spring Boot</description>
+    <name>cs544-2020-01-ether</name>
+    <description>Ether Group Project</description>
 
     <properties>
         <java.version>1.8</java.version>
