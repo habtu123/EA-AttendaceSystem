@@ -37,6 +37,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
     @GetMapping(value = "/timeSlots", produces = MediaType.APPLICATION_JSON_VALUE)
 >>>>>>> auth
     @Override
+    //@Secured({"ROLE_ADMIN","ROLE_FACULTY"})
     public List<TimeSlot> getAll() throws Exception {
         return timeSlotService.getAll();
     }

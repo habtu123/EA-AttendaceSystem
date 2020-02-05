@@ -3,7 +3,7 @@ package edu.miu.cs.cs544.ether.service.impl;
 import edu.miu.cs.cs544.ether.dal.entity.Course;
 import edu.miu.cs.cs544.ether.dal.repository.CourseRepository;
 import edu.miu.cs.cs544.ether.service.CourseService;
-import edu.miu.cs.cs544.ether.service.customexpection.CourseNotFoundException;
+import edu.miu.cs.cs544.ether.service.impl.customexpection.CourseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
