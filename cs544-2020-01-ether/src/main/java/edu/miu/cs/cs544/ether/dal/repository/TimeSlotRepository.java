@@ -9,12 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface TimeSlotRepository extends JpaRepository<TimeSlot, String> {
-<<<<<<< HEAD
+
     //	  Optional<TimeSlot> findTimeSlotById(long TimeSlotId);
 //	    Optional<TimeSlot> deleteTimeSlotById(long TimeSlotId);
 //		void delete(String name);
     Optional<TimeSlot> findById(String abbreviation);
-=======
 
->>>>>>> 7663eea4944bfff8ab7e2282c88eac9afe8c8ff0
 }

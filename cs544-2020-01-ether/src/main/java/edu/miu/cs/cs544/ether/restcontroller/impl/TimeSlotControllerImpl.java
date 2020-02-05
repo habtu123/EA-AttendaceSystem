@@ -28,6 +28,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
+    //@Secured({"ROLE_ADMIN","ROLE_FACULTY"})
     public List<TimeSlot> getAll() throws Exception {
         return timeSlotService.getAll();
     }
