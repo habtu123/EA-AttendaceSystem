@@ -1,10 +1,9 @@
 package edu.miu.cs.cs544.ether.service;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Course;
+import edu.miu.cs.cs544.ether.dal.entity.Course;
 import edu.miu.cs.cs544.ether.dal.repository.CourseRepository;
 import edu.miu.cs.cs544.ether.service.impl.CourseServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
