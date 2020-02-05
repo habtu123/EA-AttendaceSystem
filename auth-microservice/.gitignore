@@ -12,6 +12,6 @@ buildNumber.properties
 
 *.properties
 
-.idea/
+.idea/*
 *.class
 *.iml
