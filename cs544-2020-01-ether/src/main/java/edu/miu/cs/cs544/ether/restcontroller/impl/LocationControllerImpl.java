@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.restcontroller.impl;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Location;
+import edu.miu.cs.cs544.ether.dal.entity.Location;
 
 import edu.miu.cs.cs544.ether.restcontroller.LocationController;
 

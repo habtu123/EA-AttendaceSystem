@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.restcontroller;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Course;
+import edu.miu.cs.cs544.ether.dal.entity.Course;
 
 import java.util.List;
 

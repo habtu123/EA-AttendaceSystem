@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.service;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Location;
+import edu.miu.cs.cs544.ether.dal.entity.Location;
 
 import java.util.List;
 

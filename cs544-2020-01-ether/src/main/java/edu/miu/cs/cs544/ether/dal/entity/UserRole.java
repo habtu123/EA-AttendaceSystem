@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.ether.dal.entitiy;
+package edu.miu.cs.cs544.ether.dal.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public @Data class UserRole {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String role;
     @ManyToOne(cascade = CascadeType.ALL)
