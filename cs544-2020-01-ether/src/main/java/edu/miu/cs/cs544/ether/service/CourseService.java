@@ -1,7 +1,7 @@
 package edu.miu.cs.cs544.ether.service;
 
 import edu.miu.cs.cs544.ether.dal.entitiy.Course;
-import edu.miu.cs.cs544.ether.service.customexpection.CourseNotFoundException;
+import edu.miu.cs.cs544.ether.restcontroller.customexpection.CourseNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

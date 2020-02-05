@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(readOnly =true)
-    public Student getByStudentId(Long studentId) throws Exception {
+    public Student getByStudentId(String studentId) throws Exception {
 //        List<Student> student=studentRepository.findAll().stream().filter().collect(Collectors.toList());
 //        student.orElseThrow(()->new RuntimeException("No Student Record Found."));
 //        return student.get();

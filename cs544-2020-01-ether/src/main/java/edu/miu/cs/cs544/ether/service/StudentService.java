@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public interface StudentService {
    public  List<Student> getAll() throws Exception;
    public  Student getStudentBy(Predicate<Student> predicate) throws Exception;
-   public  Student getByStudentId(Long studentId) throws Exception;
+   public  Student getByStudentId(String studentId) throws Exception;
    public Student getById(Long Id);
    public Student create(Student student);
    public Student update(Student student);
