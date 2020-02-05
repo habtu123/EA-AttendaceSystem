@@ -14,7 +14,7 @@ public @Data class UserRole {
     @GeneratedValue
     private Long id;
     private String role;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username")
     private User user;
 }
