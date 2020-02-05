@@ -1,8 +1,8 @@
 package edu.miu.cs.cs544.ether.service;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.TimeSlot;
-
 import java.util.List;
+
+import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 
 public interface TimeSlotService {
 

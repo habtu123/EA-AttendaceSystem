@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Attendance;
-import edu.miu.cs.cs544.ether.dal.entitiy.CourseOffering;
-import edu.miu.cs.cs544.ether.dal.entitiy.Student;
+import edu.miu.cs.cs544.ether.dal.entity.Attendance;
+import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
+import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.dal.repository.AttendanceRepository;
 import edu.miu.cs.cs544.ether.dal.repository.CourseOfferingRepository;
 import edu.miu.cs.cs544.ether.service.AttendanceService;
@@ -29,9 +29,6 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Autowired
 	private CourseOfferingService courseOfferingService;
 	
-//	@Autowired
-//	private CourseService courseService;
-
 	@Override
 	public List<Attendance> getAttendances() {
 		List<Attendance> attendance = attendanceRepository.findAll();
@@ -49,7 +46,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 	
 	@Override
-	public List<Attendance> getAttendances(String studentId) {
+	public List<Attendance> getAttendance(String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
 				.filter(c -> c.getStudent().getStudentId().equals(studentId))
@@ -57,10 +54,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 	@Override
-	public List<Attendance> getAttendances( Long courseOfferingId, String studentId) {
+	public List<Attendance> getAttendances(Long courseOfferingId, String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
-				.filter(c -> c.getStudent().getStudentId().equals(studentId) && c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
+				.filter(c -> c.getStudent().getStudentId().equals(studentId))
+				.filter(c -> c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
 				.collect(Collectors.toList());
 	}
 

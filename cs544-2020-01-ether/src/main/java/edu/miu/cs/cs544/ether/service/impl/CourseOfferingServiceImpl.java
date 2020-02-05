@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.CourseOffering;
+import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
 import edu.miu.cs.cs544.ether.dal.repository.CourseOfferingRepository;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
 import edu.miu.cs.cs544.ether.service.StudentService;

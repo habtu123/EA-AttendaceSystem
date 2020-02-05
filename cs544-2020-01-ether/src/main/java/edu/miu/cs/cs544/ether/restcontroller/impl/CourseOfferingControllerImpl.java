@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.CourseOffering;
-import edu.miu.cs.cs544.ether.dal.entitiy.TimeSlot;
+import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
+import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.restcontroller.CourseOfferingController;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
 import edu.miu.cs.cs544.ether.service.TimeSlotService;
