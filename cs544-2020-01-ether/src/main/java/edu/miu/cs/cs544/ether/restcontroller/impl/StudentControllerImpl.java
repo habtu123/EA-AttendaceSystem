@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Students")
 public class StudentControllerImpl implements StudentController {
     @Autowired
     private StudentService studentService;
@@ -26,7 +25,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/Students", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     //@Secured({"ROLE_ADMIN","ROLE_FACULTY"})
     public List<Student> getAll() {
@@ -50,7 +49,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @GetMapping(value="/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/Students/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Student getByStudentId(@PathVariable  String StudentId) throws StudentNotFoundException  {
         return studentService.getByStudentId(StudentId);
@@ -63,7 +62,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/addNew",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/Students",consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Student create(@RequestBody @Valid Student Student) {
         return studentService.create(Student);
@@ -77,7 +76,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @Override
-    @PutMapping(value = "/StudentId/{StudentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/Students/StudentId/{StudentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public Student update(@RequestBody @Valid Student Student,@PathVariable String StudentId ) throws StudentNotFoundException {
         Student currentStudent=studentService.getByStudentId(StudentId);
         if (currentStudent==null)
@@ -92,8 +91,8 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @Override
-    @DeleteMapping(value = "/StudentId/{StudentId}")
-    public void delete(@PathVariable String StudentId)  {
+    @DeleteMapping(value = "/Students/StudentId/{StudentId}")
+    public void delete(@PathVariable String StudentId) {
         Student Student=studentService.getByStudentId(StudentId);
         if (Student!=null)
             studentService.delete(Student);
