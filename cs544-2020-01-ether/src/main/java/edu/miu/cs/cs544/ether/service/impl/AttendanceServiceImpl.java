@@ -77,7 +77,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 		
 		Date date_real = formatter.parse(date);
-		Student student = studentService.getStudents()
+		Student student = studentService.getAll()
 				.stream()
 				.filter(c -> c.getBarCodeId().equals(barCodeId))
 				.findFirst().get();

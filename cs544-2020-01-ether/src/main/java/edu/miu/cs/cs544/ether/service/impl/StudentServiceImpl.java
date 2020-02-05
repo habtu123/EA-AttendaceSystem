@@ -23,7 +23,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAll() throws Exception {
-
         List<Student> students = studentRepository.findAll();
         if(students == null)
             throw new Exception("No Students found!!");
@@ -31,18 +30,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional(readOnly =true)
     public Student getStudentBy(Predicate<Student> predicate) throws Exception {
-
         return null;
     }
 
     @Override
     @Transactional(readOnly =true)
     public Student getByStudentId(String studentId) throws Exception {
-//        List<Student> student=studentRepository.findAll().stream().filter().collect(Collectors.toList());
-//        student.orElseThrow(()->new RuntimeException("No Student Record Found."));
-//        return student.get();
-        return null;
+        Optional<Student> student=studentRepository.findAll().stream().filter(x->x.getStudentId().equals((studentId))).findFirst();
+        Student result = null;
+        if (student.isPresent()){
+            result=student.get();
+        }else{
+            throw new RuntimeException("No Student Found-"+ studentId);
+        }
+        return result;
     }
 
     @Override
@@ -61,23 +64,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student update(Student student) {
-        studentRepository.save(student);
-        return null;
-    }
-
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Student getStudent(Long Id) throws Exception {
-        Student student=studentRepository.findById(Id).get();
-        if(student==null){
-        	return null;
-        }
-        return student;
-
+    public Student update(@Valid Student student) {
+        Student studentUpdated= studentRepository.save(student);
+        return studentUpdated;
     }
 
     @Override
-    public void delete(Student student) {studentRepository.delete(student);
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void delete(Student student) {
+        studentRepository.delete(student);
     }
 }

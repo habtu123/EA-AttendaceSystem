@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import edu.miu.cs.cs544.ether.restcontroller.customexpection.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,16 +33,17 @@ public class StudentControllerImpl implements StudentController {
         return studentService.getAll();
     }
 
-    @ApiOperation(value = "View a particular Student", response = List.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @GetMapping(value="/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public Student getById(@PathVariable Long Id) {
-        return studentService.getById(Id);
-    }
+//    @ApiOperation(value = "View a particular Student", response = List.class)
+//    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+//            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+//            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+//            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+
+//    @GetMapping(value="/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Override
+//    public Student getById(@PathVariable Long Id) {
+//        return studentService.getById(Id);
+//    }
     
     @ApiOperation(value = "View a particular Student by StudentId", response = List.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -67,6 +69,8 @@ public class StudentControllerImpl implements StudentController {
         return studentService.create(Student);
     }
 
+
+
     @ApiOperation(value = "Update a particular Student", response = List.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -76,8 +80,8 @@ public class StudentControllerImpl implements StudentController {
     @PutMapping(value = "/StudentId/{StudentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public Student update(@RequestBody @Valid Student Student,@PathVariable String studentId ) throws Exception {
         Student currentStudent=studentService.getByStudentId(studentId);
-        if (currentStudent!=null)
-            //throw new StudentNotFoundException("StudentId Not Found- "+ studentId);
+        if (currentStudent==null)
+            throw new StudentNotFoundException("StudentId Not Found- "+ studentId);
         studentService.update(Student);
         return Student;
     }

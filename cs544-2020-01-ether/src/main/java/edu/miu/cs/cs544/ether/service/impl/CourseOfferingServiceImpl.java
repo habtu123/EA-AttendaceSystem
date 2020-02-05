@@ -79,7 +79,7 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 			throw new Exception("Course offering cannot be empty");
 		}
 		
-		if(studentService.getStudent(courseOffering.getStudent().getId()) == null) {
+		if(studentService.getById(courseOffering.getStudent().getId()) == null) {
 			throw new Exception("Student not found");
 		}
 		

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,23 +14,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Student implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Student extends User {
     private String studentId;
-    private String firstName;
-    private String lastName;
     private String barCodeId;
     
 	public Student() {
 		
 	}
 
-	public Student(String studentId, String firstName, String lastName, String barCodeId) {
+	public Student(String username, String password, List<UserRole> roles, String studentId, String barCodeId) {
+		super(username, password, roles);
 		this.studentId = studentId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.barCodeId = barCodeId;
+	}
+
+	public Student(String studentId, String barCodeId) {
+		this.studentId = studentId;
 		this.barCodeId = barCodeId;
 	}
 
@@ -41,30 +41,6 @@ public class Student implements Serializable {
 		this.studentId = studentId;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getBarCodeId() {
 		return barCodeId;
 	}
@@ -72,10 +48,6 @@ public class Student implements Serializable {
 	public void setBarCodeId(String barCodeId) {
 		this.barCodeId = barCodeId;
 	}
-	
-	
-    
-    
 
 }
 
