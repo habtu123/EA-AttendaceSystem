@@ -15,6 +15,6 @@ public @Data class User {
     private Long id;
     private String username;
     private String password;
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private List<UserRole> roles;
 }

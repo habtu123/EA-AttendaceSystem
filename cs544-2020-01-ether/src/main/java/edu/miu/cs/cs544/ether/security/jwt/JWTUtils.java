@@ -44,6 +44,7 @@ public class JWTUtils implements Serializable
  {
   PrivateKey privateKey = null;
   String privateKeyContent = readKeyFromFile(privateKeyLocation);
+  System.out.println(privateKeyContent);
   privateKeyContent = privateKeyContent.replace(privateKeyBegin, "");
   privateKeyContent = privateKeyContent.replace(pivateKeyEnd, "").replaceAll("\\s", "");
   byte[] encoded = Base64.getDecoder().decode(privateKeyContent.getBytes(StandardCharsets.UTF_8));

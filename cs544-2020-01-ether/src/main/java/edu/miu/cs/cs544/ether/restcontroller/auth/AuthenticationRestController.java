@@ -13,4 +13,6 @@ public interface AuthenticationRestController
  // Response without JWT inside
  public ResponseEntity<JwtAuthenticationResponse> createAuthenticationToken(
          JwtAuthenticationRequest authenticationRequest, HttpServletResponse response);
+
+
 }

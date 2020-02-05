@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.miu.cs.cs544.ether.exception.UnauthorizedRequestException;
+import edu.miu.cs.cs544.ether.security.MyPrncipalUser;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.consumer.JwtConsumer;
@@ -150,7 +151,7 @@ public class JwtTokenUtilService implements Serializable
    return false;
   }
   final String usernameTrimmed = username.trim();
-  final JwtUser user = (JwtUser) userDetails;
+  final MyPrncipalUser user = (MyPrncipalUser) userDetails;
   String jwtUsername = user.getUsername().trim();
   return (jwtUsername.equals(usernameTrimmed));
  }
