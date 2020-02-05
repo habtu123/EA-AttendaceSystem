@@ -5,7 +5,7 @@ import edu.miu.cs.cs544.ether.dal.entity.Location;
 import java.util.List;
 
 public interface LocationService {
-    public void addLocation(Location newLocation);
+    public Location addLocation(Location newLocation);
 
     public List<Location> getLocations();
 
@@ -13,5 +13,5 @@ public interface LocationService {
 
     public void deleteLocation(Long locationId);
 
-    public void updateLocation(Location updatedLocation);
+    public Location updateLocation(Location updatedLocation);
 }

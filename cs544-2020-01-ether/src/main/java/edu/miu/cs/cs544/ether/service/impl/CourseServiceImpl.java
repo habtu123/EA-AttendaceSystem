@@ -6,6 +6,7 @@ import edu.miu.cs.cs544.ether.service.CourseService;
 import edu.miu.cs.cs544.ether.service.impl.customexpection.CourseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Override
+    @Transactional
     public List<Course> getCourses() throws CourseNotFoundException {
         List<Course> courses = courseRepository.findAll();
         if (courses == null || courses.size() == 0)
@@ -25,14 +27,16 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public Course getCourse(Long id) throws CourseNotFoundException {
-        Optional<Course> course = courseRepository.findById(id);
-        if (!course.isPresent())
+        Course course = courseRepository.getOne(id);
+        if (course == null)
             throw new CourseNotFoundException("Course not found!");
-        return course.get();
+        return course;
     }
 
     @Override
+    @Transactional
     public Course getCourse(String courseId) throws CourseNotFoundException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();
@@ -42,6 +46,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional()
     public Course saveCourse(Course course) throws RuntimeException {
         System.out.println(course);
 
@@ -52,16 +57,18 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void deleteCourse(String courseId) throws RuntimeException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();
         if (!course.isPresent())
             throw new RuntimeException("Course not found!");
-        deleteCourse(course.get().getCourseId());
+        deleteCourse(course.get().getId());
     }
 }
