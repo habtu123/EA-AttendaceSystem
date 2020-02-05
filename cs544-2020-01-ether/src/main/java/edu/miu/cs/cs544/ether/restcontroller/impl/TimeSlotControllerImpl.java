@@ -7,6 +7,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,27 +18,16 @@ import java.util.List;
 public class TimeSlotControllerImpl implements TimeSlotController {
     @Autowired
     private TimeSlotService timeSlotService;
-
-<<<<<<< HEAD
     @ApiOperation(value = "View a list of available time slot", response = List.class)
-=======
-    @ApiOperation(value = "View a list of available student", response = List.class)
-
-
->>>>>>> auth
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-<<<<<<< HEAD
-    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-=======
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @GetMapping(value = "/timeSlots", produces = MediaType.APPLICATION_JSON_VALUE)
->>>>>>> auth
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    //@Secured({"ROLE_ADMIN","ROLE_FACULTY"})
+    @Secured({"ADMIN","FACULTY"})
     public List<TimeSlot> getAll() throws Exception {
         return timeSlotService.getAll();
     }

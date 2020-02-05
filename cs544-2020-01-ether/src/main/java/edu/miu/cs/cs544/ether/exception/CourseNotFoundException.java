@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.ether.restcontroller.customexpection;
+package edu.miu.cs.cs544.ether.exception;
 
 public class CourseNotFoundException extends RuntimeException{
     public CourseNotFoundException() {

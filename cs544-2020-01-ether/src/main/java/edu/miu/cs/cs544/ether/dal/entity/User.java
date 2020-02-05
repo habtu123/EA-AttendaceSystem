@@ -17,7 +17,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private List<UserRole> roles;
     
 	public User(String username, String password, List<UserRole> roles) {

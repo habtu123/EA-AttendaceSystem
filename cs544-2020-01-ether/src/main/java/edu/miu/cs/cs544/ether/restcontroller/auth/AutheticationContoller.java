@@ -34,12 +34,6 @@ public class AutheticationContoller {
 
     @PostMapping(value = "/autheticate")
     public String createAutheticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
-//        try {
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
-//        }catch (BadCredentialsException e){
-//            throw new Exception("Incorete username or password", e);
-//        }
-
 
         ResponseEntity<AutheticationResponse> jwt = restTemplate.postForEntity("http://auth/autheticate", authenticationRequest, AutheticationResponse.class);
 

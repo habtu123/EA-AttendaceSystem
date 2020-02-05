@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.ether.service.impl;
 import edu.miu.cs.cs544.ether.dal.entity.Student;
 
 import edu.miu.cs.cs544.ether.dal.repository.StudentRepository;
+import edu.miu.cs.cs544.ether.exception.StudentNotFoundException;
 import edu.miu.cs.cs544.ether.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,37 +23,37 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public List<Student> getAll() throws Exception {
+    public List<Student> getAll() throws StudentNotFoundException {
         List<Student> students = studentRepository.findAll();
         if(students == null)
-            throw new Exception("No Students found!!");
+            throw new StudentNotFoundException("No Students found!!");
         return students;
     }
 
     @Override
     @Transactional(readOnly =true)
-    public Student getStudentBy(Predicate<Student> predicate) throws Exception {
+    public Student getStudentBy(Predicate<Student> predicate) throws StudentNotFoundException {
         return null;
     }
 
     @Override
     @Transactional(readOnly =true)
-    public Student getByStudentId(String studentId) throws Exception {
+    public Student getByStudentId(String studentId) throws StudentNotFoundException {
         Optional<Student> student=studentRepository.findAll().stream().filter(x->x.getStudentId().equals((studentId))).findFirst();
         Student result = null;
         if (student.isPresent()){
             result=student.get();
         }else{
-            throw new RuntimeException("No Student Found-"+ studentId);
+            throw new StudentNotFoundException("No Student Found-"+ studentId);
         }
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Student getById(Long Id) {
+    public Student getById(Long Id) throws StudentNotFoundException {
         Optional<Student> student=studentRepository.findById(Id);
-        student.orElseThrow(()->new RuntimeException("No Student Record Found."));
+        student.orElseThrow(()->new StudentNotFoundException("No Student Record Found."));
         return student.get();
     }
 

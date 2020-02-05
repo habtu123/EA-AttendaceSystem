@@ -1,12 +1,14 @@
-package edu.miu.cs.cs544.ether.restcontroller.customexpection;
+package edu.miu.cs.cs544.ether.exception.handle;
 
+import edu.miu.cs.cs544.ether.exception.StudentErrorResponse;
+import edu.miu.cs.cs544.ether.exception.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class StudentRestExceptionHandler  {
+public class RestExceptionHandler  {
     //Add an exception handler for StudentNotFoundException
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handlerException(StudentNotFoundException exc){
@@ -15,6 +17,7 @@ public class StudentRestExceptionHandler  {
                 HttpStatus.NOT_FOUND.value(),
                 exc.getMessage(),
                 System.currentTimeMillis()
+
         );
         //return ResponseEntity
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
@@ -31,4 +34,5 @@ public class StudentRestExceptionHandler  {
         //return ResponseEntity
         return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
     }
+
 }

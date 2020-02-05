@@ -1,6 +1,5 @@
-package edu.miu.cs.cs544.ether.restcontroller.customexpection;
+package edu.miu.cs.cs544.ether.exception;
 
-import lombok.*;
 
 
 public class StudentErrorResponse {

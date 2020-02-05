@@ -1,7 +1,6 @@
 package edu.miu.cs.cs544.ether.security;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.User;
-import edu.miu.cs.cs544.ether.dal.entitiy.UserRole;
+import edu.miu.cs.cs544.ether.dal.entity.User;
 import edu.miu.cs.cs544.ether.dal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
