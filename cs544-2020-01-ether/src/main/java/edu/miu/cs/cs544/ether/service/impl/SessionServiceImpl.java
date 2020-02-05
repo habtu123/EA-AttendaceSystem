@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.service.impl;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Session;
+import edu.miu.cs.cs544.ether.dal.entity.Session;
 import edu.miu.cs.cs544.ether.dal.repository.SessionRepository;
 import edu.miu.cs.cs544.ether.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.restcontroller.impl;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Course;
+import edu.miu.cs.cs544.ether.dal.entity.Course;
 import edu.miu.cs.cs544.ether.restcontroller.CourseController;
 import edu.miu.cs.cs544.ether.service.CourseService;
 import io.swagger.annotations.ApiOperation;

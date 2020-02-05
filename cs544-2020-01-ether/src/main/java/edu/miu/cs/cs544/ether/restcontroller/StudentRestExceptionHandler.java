@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.restcontroller;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Student;
+import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.service.customexpection.StudentNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

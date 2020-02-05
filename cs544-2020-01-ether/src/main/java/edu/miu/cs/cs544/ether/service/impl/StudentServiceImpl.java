@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.service.impl;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Student;
+import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.dal.repository.StudentRepository;
 import edu.miu.cs.cs544.ether.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

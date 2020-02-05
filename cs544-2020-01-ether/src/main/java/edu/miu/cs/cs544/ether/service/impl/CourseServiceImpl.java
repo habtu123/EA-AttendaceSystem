@@ -1,6 +1,6 @@
 package edu.miu.cs.cs544.ether.service.impl;
 
-import edu.miu.cs.cs544.ether.dal.entitiy.Course;
+import edu.miu.cs.cs544.ether.dal.entity.Course;
 import edu.miu.cs.cs544.ether.dal.repository.CourseRepository;
 import edu.miu.cs.cs544.ether.service.CourseService;
 import edu.miu.cs.cs544.ether.service.customexpection.CourseNotFoundException;

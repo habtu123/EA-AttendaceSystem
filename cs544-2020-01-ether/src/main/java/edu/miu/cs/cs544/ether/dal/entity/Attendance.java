@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.ether.dal.entitiy;
+package edu.miu.cs.cs544.ether.dal.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class Attendance {
     private Long id;
     @ManyToOne()
     @JoinColumn(name = "barCodeId", referencedColumnName = "barCodeId")
-    private  Student barcodeId;
+    private Student student;
     @Temporal(TemporalType.DATE)
     private Date date;
     @ManyToOne(cascade = CascadeType.ALL)

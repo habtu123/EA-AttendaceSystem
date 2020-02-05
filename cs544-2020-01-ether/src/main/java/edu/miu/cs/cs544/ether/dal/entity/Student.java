@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.ether.dal.entitiy;
+package edu.miu.cs.cs544.ether.dal.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String studentId;
     private String firstName;
