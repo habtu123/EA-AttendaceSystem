@@ -3,7 +3,7 @@ package edu.miu.cs.cs544.ether.service.impl;
 import edu.miu.cs.cs544.ether.dal.entitiy.Course;
 import edu.miu.cs.cs544.ether.dal.repository.CourseRepository;
 import edu.miu.cs.cs544.ether.service.CourseService;
-import edu.miu.cs.cs544.ether.restcontroller.customexpection.CourseNotFoundException;
+import edu.miu.cs.cs544.ether.service.impl.customexpection.CourseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getCourses() throws CourseNotFoundException {
         List<Course> courses = courseRepository.findAll();
         if (courses == null || courses.size() == 0)
-            throw new RuntimeException("No courses available!");
+            throw new CourseNotFoundException("No courses available!");
         return courses;
     }
 
@@ -28,7 +28,7 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourse(Long id) throws CourseNotFoundException {
         Optional<Course> course = courseRepository.findById(id);
         if (!course.isPresent())
-            throw new RuntimeException("Course not found!");
+            throw new CourseNotFoundException("Course not found!");
         return course.get();
     }
 
@@ -37,7 +37,7 @@ public class CourseServiceImpl implements CourseService {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();
         if (!course.isPresent())
-            throw new RuntimeException("Course not found!");
+            throw new CourseNotFoundException("Course not found!");
         return course.get();
     }
 

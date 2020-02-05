@@ -2,9 +2,7 @@ package edu.miu.cs.cs544.ether.restcontroller.customexpection;
 
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+
 public class StudentErrorResponse {
     private int status;
     private String message;
