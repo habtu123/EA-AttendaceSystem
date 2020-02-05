@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
 import edu.miu.cs.cs544.ether.dal.repository.CourseOfferingRepository;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
+import edu.miu.cs.cs544.ether.service.CourseService;
 import edu.miu.cs.cs544.ether.service.StudentService;
 
 @Service
@@ -22,8 +23,8 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	@Autowired
 	private StudentService studentService;
 	
-//	@Autowired
-//	private CourseService courseService;
+	@Autowired
+	private CourseService courseService;
 
 	@Override
 	public List<CourseOffering> getCourseOfferings() {
@@ -82,9 +83,9 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 			throw new Exception("Student not found");
 		}
 		
-//		if(courseService.getCourse(courseOffering.getCourse().getId() == null) {
-//			throw new Exception("Invalid course");
-//		}
+		if(courseService.getCourse(courseOffering.getCourse().getId()) == null) {
+			throw new Exception("Invalid course");
+		}
 		
 		return courseOfferingRepository.save(courseOffering);		
 		
