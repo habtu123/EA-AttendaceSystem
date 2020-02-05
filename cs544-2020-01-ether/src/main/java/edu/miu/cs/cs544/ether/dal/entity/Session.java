@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.ether.dal.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,9 +16,9 @@ public @Data  class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private TimeSlot timeSlot;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private CourseOffering courseOffering;
 
 }

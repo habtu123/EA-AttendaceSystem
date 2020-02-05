@@ -22,8 +22,8 @@ public class Attendance {
     private Student student;
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Location location;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private TimeSlot timeSlot;
 }
