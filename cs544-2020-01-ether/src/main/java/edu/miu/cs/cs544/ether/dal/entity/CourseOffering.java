@@ -9,9 +9,15 @@ import java.util.Date;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class CourseOffering {
+	public CourseOffering(Long courseOfferingId, Course course, Date startDate, Date endDate, Student student) {
+		this.courseOfferingId = courseOfferingId;
+		this.course = course;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.student = student;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

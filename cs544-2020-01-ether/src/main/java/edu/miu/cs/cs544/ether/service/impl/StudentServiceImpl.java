@@ -15,7 +15,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     @Override
-    public List<Student> listOfStudent()  throws Exception {
+    public List<Student> getStudents() throws Exception {
         List<Student> students = studentRepository.findAll();
         if(students == null)
             throw new Exception("No Students found!!");
@@ -31,8 +31,8 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudent(Long Id) throws Exception {
         Student student=studentRepository.findById(Id).get();
         if(student==null){
-
+        	return null;
         }
-        return null;
+        return student;
     }
 }

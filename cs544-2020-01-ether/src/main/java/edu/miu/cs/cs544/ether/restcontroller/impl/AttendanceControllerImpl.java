@@ -1,5 +1,6 @@
 package edu.miu.cs.cs544.ether.restcontroller.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,13 @@ public class AttendanceControllerImpl implements AttendanceController {
 	@GetMapping(value = "/attendances", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances() {
-		return attendanceService.getAttendances();
+		try {
+			return attendanceService.getAttendances();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@ApiOperation(value = "Get attendance for a student for a course offering", response = List.class)
@@ -49,7 +56,13 @@ public class AttendanceControllerImpl implements AttendanceController {
 	@GetMapping(value = "/attendances/{courseOfferingId}/{studentId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId, @PathVariable String studentId) {
-		return attendanceService.getAttendances(courseOfferingId, studentId);
+		try {
+			return attendanceService.getAttendances(courseOfferingId, studentId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@ApiOperation(value = "Get specific courseoffering", response = List.class)
@@ -60,7 +73,13 @@ public class AttendanceControllerImpl implements AttendanceController {
 	@GetMapping(value = "/attendances/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId) {
-		return attendanceService.getAttendances(courseOfferingId);
+		try {
+			return attendanceService.getAttendances(courseOfferingId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@ApiOperation(value = "Get all the attendance of a student", response = List.class)
@@ -71,7 +90,34 @@ public class AttendanceControllerImpl implements AttendanceController {
 	@GetMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendance(@RequestParam(value="studentId") String studentId) {
-		return attendanceService.getAttendance(studentId);
+		try {
+			return attendanceService.getAttendance(studentId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@ApiOperation(value = "take attendance of a student", response = Attendance.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@PostMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
+	@Override
+	public Attendance takeAttendance(@RequestParam(value="barCodeId") String barCodeId,
+			@RequestParam(value="date") String date,
+			@RequestParam(value="timeAbbvr") String timeAbbvr,
+			@RequestParam(value="locationId") String locationId) {
+		
+		try {
+			return attendanceService.takeAttendance(barCodeId, date, timeAbbvr, locationId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
