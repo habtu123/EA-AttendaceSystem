@@ -14,8 +14,8 @@ public class LocationServiceImpl implements LocationService {
     private LocationRepository locationRepository;
 
     @Override
-    public void addLocation(Location newLocation){
-        locationRepository.save(newLocation);
+    public Location addLocation(Location newLocation){
+        return locationRepository.save(newLocation);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public void updateLocation(Location updatedLocation){
+    public Location updateLocation(Location updatedLocation){
 
-        locationRepository.save(updatedLocation);
+        return  locationRepository.save(updatedLocation);
     }
 }

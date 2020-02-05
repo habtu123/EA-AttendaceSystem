@@ -1,9 +1,5 @@
 package edu.miu.cs.cs544.ether.dal.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +9,9 @@ public class Course {
     private Long id;
     private String courseId;
     private String name;
-    
+	@Lob
+	private String description;
+
     public Course() {
     	
     }
@@ -28,7 +26,7 @@ public class Course {
 		return id;
 	}
 
-	public void setId(Long id) {
+	private void setId(Long id) {
 		this.id = id;
 	}
 
@@ -50,7 +48,6 @@ public class Course {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@Lob
-    private String description;
+
 
 }
