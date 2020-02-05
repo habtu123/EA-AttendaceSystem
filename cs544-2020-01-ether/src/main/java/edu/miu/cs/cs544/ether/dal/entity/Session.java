@@ -9,10 +9,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public @Data  class Session {
-    @Id
+public class Session {
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
@@ -20,5 +19,41 @@ public @Data  class Session {
     private TimeSlot timeSlot;
     @ManyToOne(cascade = CascadeType.ALL)
     private CourseOffering courseOffering;
+    
+    public Session() {
+    	
+    }
 
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Session(Date date, TimeSlot timeSlot, CourseOffering courseOffering) {
+		super();
+		this.date = date;
+		this.timeSlot = timeSlot;
+		this.courseOffering = courseOffering;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public TimeSlot getTimeSlot() {
+		return timeSlot;
+	}
+	public void setTimeSlot(TimeSlot timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+	public CourseOffering getCourseOffering() {
+		return courseOffering;
+	}
+	public void setCourseOffering(CourseOffering courseOffering) {
+		this.courseOffering = courseOffering;
+	}
 }
