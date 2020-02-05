@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544.ether.security;
+package edu.miu.cs.cs544.ether.auth.security;
 
-import edu.miu.cs.cs544.ether.security.jwt.JwtRequestFilter;
+import edu.miu.cs.cs544.ether.auth.security.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

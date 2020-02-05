@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544.ether.security.jwt;
+package edu.miu.cs.cs544.ether.auth.security.jwt;
 
-import edu.miu.cs.cs544.ether.security.MyUserDetailService;
+import edu.miu.cs.cs544.ether.auth.security.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

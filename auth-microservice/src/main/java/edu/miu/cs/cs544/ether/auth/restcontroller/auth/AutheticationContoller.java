@@ -1,12 +1,10 @@
-package edu.miu.cs.cs544.ether.restcontroller.auth;
+package edu.miu.cs.cs544.ether.auth.restcontroller.auth;
 
-import edu.miu.cs.cs544.ether.dal.dto.AuthenticationRequest;
-import edu.miu.cs.cs544.ether.dal.dto.AutheticationResponse;
-import edu.miu.cs.cs544.ether.security.MyUserDetailService;
-import edu.miu.cs.cs544.ether.security.jwt.JWTUtils;
-import edu.miu.cs.cs544.ether.security.jwt.JwtTokenUtilService;
+import edu.miu.cs.cs544.ether.auth.dal.dto.AuthenticationRequest;
+import edu.miu.cs.cs544.ether.auth.dal.dto.AutheticationResponse;
+import edu.miu.cs.cs544.ether.auth.security.MyUserDetailService;
+import edu.miu.cs.cs544.ether.auth.security.jwt.JwtTokenUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class AutheticationContoller {
@@ -29,24 +26,18 @@ public class AutheticationContoller {
     @Autowired
     private JwtTokenUtilService jwtTokenUtilService;
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     @PostMapping(value = "/autheticate")
-    public String createAutheticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
+    public ResponseEntity<AutheticationResponse> createAutheticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
 //        try {
 //            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 //        }catch (BadCredentialsException e){
 //            throw new Exception("Incorete username or password", e);
 //        }
 
-
-        ResponseEntity<AutheticationResponse> jwt = restTemplate.postForEntity("http://auth/autheticate", authenticationRequest, AutheticationResponse.class);
-
         final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtilService.generateToken(userDetails);
+        final String jwt = jwtTokenUtilService.generateToken(userDetails);
 
-        return jwt.getBody().getJwt();
+        return ResponseEntity.ok(new AutheticationResponse(jwt));
     }
 
 }
