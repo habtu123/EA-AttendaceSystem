@@ -22,6 +22,8 @@ import edu.miu.cs.cs544.ether.restcontroller.CourseOfferingController;
 import edu.miu.cs.cs544.ether.service.AttendanceService;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
 import edu.miu.cs.cs544.ether.service.TimeSlotService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -36,6 +38,8 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	 @ApiImplicitParams({
+         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances() {
@@ -53,6 +57,8 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	 @ApiImplicitParams({
+         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances/{courseOfferingId}/{studentId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId, @PathVariable String studentId) {
@@ -70,6 +76,8 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	 @ApiImplicitParams({
+         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId) {
@@ -87,7 +95,9 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@GetMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiImplicitParams({
+         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+ 	@GetMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendance(@RequestParam(value="studentId") String studentId) {
 		try {
@@ -104,6 +114,8 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@PostMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public Attendance takeAttendance(@RequestParam(value="barCodeId") String barCodeId,
