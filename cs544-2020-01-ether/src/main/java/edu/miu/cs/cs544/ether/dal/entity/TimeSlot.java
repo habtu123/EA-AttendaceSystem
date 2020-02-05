@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public @Data  class TimeSlot {
     @Id
-    private String abbereviation;
+    private String abbreviation;
     private String description;
     @Temporal(TemporalType.TIME)
     private Date startTime;

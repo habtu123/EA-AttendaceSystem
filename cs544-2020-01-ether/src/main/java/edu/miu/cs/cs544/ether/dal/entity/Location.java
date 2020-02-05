@@ -21,7 +21,4 @@ public @Data  class Location {
     private String building;
     private String room;
     private Integer capacity;
-
-
-
 }

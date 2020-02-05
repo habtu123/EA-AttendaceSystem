@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public @Data class UserRole {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String role;
     @ManyToOne
