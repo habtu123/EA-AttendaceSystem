@@ -68,9 +68,9 @@ public class AttendanceControllerImpl implements AttendanceController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@GetMapping(value = "/attendances/{studentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public List<Attendance> getAttendance(@PathVariable String studentId) {
+	public List<Attendance> getAttendance(@RequestParam(value="studentId") String studentId) {
 		return attendanceService.getAttendance(studentId);
 	}
 

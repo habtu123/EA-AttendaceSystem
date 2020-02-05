@@ -41,7 +41,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public List<Attendance> getAttendances(Long courseOfferingId) {
 		return attendanceRepository.findAll()
 				.stream()
-				.filter(c -> c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
+				.filter(c -> !c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && !c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
 				.collect(Collectors.toList());
 	}
 	
@@ -58,7 +58,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		return attendanceRepository.findAll()
 				.stream()
 				.filter(c -> c.getStudent().getStudentId().equals(studentId))
-				.filter(c -> c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
+				.filter(c -> !c.getDate().before(courseOfferingService.getCourseOffering(courseOfferingId).getStartDate()) && !c.getDate().after(courseOfferingService.getCourseOffering(courseOfferingId).getEndDate()))
 				.collect(Collectors.toList());
 	}
 
