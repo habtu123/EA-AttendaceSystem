@@ -4,6 +4,7 @@ import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.dal.repository.TimeSlotRepository;
 import edu.miu.cs.cs544.ether.service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ public class TImeSlotServiceImpl implements TimeSlotService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = true)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<TimeSlot> getAll() throws Exception {
         List<TimeSlot>  timeSlots = timeSlotRepository.findAll();
         if(timeSlots == null)

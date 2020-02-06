@@ -31,7 +31,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("in internal filter");
-        final String authorizationHeader = request.getHeader("Auth");
+        final String authorizationHeader = request.getHeader("X-API-Key");
         String username = null;
         String jwt = null;
 
