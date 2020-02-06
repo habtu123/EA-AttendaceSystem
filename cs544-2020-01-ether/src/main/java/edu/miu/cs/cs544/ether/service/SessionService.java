@@ -11,9 +11,13 @@ public interface SessionService {
     public List<Session> getSessions();
 
     public Session getSessionById(Long sessionId);
+    
+    public List<Session> getSessions(Long courseOfferingId);
 
     public void deleteSession(Long sessionId);
 
     public void updateSession(Session updatedSession);
+
+	void deleteSessionByCourseOffering(Long courseOfferingId);
 
 }

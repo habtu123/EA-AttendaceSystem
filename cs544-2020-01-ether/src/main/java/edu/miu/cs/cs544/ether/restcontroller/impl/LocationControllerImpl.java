@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/locations/")
 public class LocationControllerImpl implements LocationController {
 
     @Autowired
@@ -24,7 +23,7 @@ public class LocationControllerImpl implements LocationController {
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "locations", produces = MediaType.APPLICATION_JSON_VALUE)
     public Location addLocation(@RequestBody Location newLocation){
         locationService.addLocation(newLocation);
         return newLocation;
@@ -32,28 +31,35 @@ public class LocationControllerImpl implements LocationController {
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/locations", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Location> getLocations(){
         return locationService.getLocations();
     }
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @GetMapping(value = "{locationId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/locations/{locationId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Location getLocationById(@PathVariable Long locationId){
         return locationService.getLocationById(locationId);
+    }
+    
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+    @GetMapping(value = "/locations/courseoffering/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Location getLocationByCourseOffering(@PathVariable Long courseOfferingId){
+        return locationService.getLocationByCourseOffering(courseOfferingId);
     }
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @DeleteMapping(value = "/delete/{locationId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/locations/{locationId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteLocation(@PathVariable Long locationId){
         locationService.deleteLocation(locationId);
     }
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @RequestMapping(value="/update/{locationId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/locations/{locationId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateLocation(@PathVariable Long locationId, @RequestBody Location updatedLocation){
         //because this is a PUT, all fields are mandatory. Alternative would be to use the PATCH HTTP verb
         //TODO: Add functionality to validate that all fields have been passed

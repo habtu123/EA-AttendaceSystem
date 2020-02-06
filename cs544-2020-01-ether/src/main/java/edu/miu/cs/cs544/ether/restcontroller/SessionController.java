@@ -9,10 +9,14 @@ public interface SessionController {
     public Session addSession(Session newSession);
 
     public List<Session> getSessions();
+    
+    public List<Session> getSessions(Long courseOfferingId);
 
     public Session getSessionById(Long sessionId);
 
     public void deleteSession(Long sessionId);
+    
+    public void deleteSessionByCourseOffering(Long courseOfferingId);
 
     public void updateSession(Long SessionId, Session updatedSession);
 

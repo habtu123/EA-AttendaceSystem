@@ -21,7 +21,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly = true)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','FACULTY')")
     public List<Course> getCourses() throws CourseNotFoundException {
         List<Course> courses = courseRepository.findAll();
         if (courses == null || courses.size() == 0)
@@ -31,7 +31,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Course getCourse(Long id) throws CourseNotFoundException {
         Course course = courseRepository.getOne(id);
         if (course == null)
@@ -41,7 +41,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'FACULTY')")
     public Course getCourse(String courseId) throws CourseNotFoundException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();
@@ -52,7 +52,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Course saveCourse(Course course) throws RuntimeException {
         System.out.println(course);
 
@@ -64,14 +64,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void deleteCourse(String courseId) throws RuntimeException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();

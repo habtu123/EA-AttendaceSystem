@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/sessions/")
 public class SessionControllerImpl implements SessionController {
 
     @Autowired
@@ -22,7 +21,7 @@ public class SessionControllerImpl implements SessionController {
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "X-API-Key ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/sessions", produces = MediaType.APPLICATION_JSON_VALUE)
     public Session addSession(@RequestBody Session newSession){
         sessionService.addSession(newSession);
         return newSession;
@@ -30,28 +29,42 @@ public class SessionControllerImpl implements SessionController {
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/sessions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Session> getSessions(){
         return sessionService.getSessions();
     }
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @GetMapping(value = "{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/sessions/{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Session getSessionById(@PathVariable Long sessionId){
         return sessionService.getSessionById(sessionId);
     }
-
+    
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @DeleteMapping(value = "/delete/{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteSession(@PathVariable Long sessionId){
-        sessionService.deleteSession(sessionId);
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+    @GetMapping(value = "/sessions/courseoffering/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Session> getSessions(@PathVariable Long courseOfferingId){
+        return sessionService.getSessions(courseOfferingId);
     }
 
     @ApiImplicitParams({
         @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
-    @RequestMapping(value="/update/{sessionId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/sessions/{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteSession(@PathVariable Long sessionId){
+        sessionService.deleteSession(sessionId);
+    }
+    
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+    @DeleteMapping(value = "/sessions/courseoffering/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteSessionByCourseOffering(@PathVariable Long courseOfferingId){
+        sessionService.deleteSessionByCourseOffering(courseOfferingId);
+    }
+
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+    @PutMapping(value="/sessions/{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateSession(@PathVariable Long sessionId, @RequestBody Session updatedSession){
         //because this is a PUT, all fields are mandatory. Alternative would be to use the PATCH HTTP verb
         //TODO: Add functionality to validate that all fields have been passed
