@@ -2,7 +2,7 @@ package edu.miu.cs.cs544.ether.service;
 
 import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.dal.repository.TimeSlotRepository;
-import edu.miu.cs.cs544.ether.service.impl.TImeSlotServiceImpl;
+import edu.miu.cs.cs544.ether.service.impl.TimeSlotServiceImpl;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ public class TimeSlotServiceMockTest {
     private TimeSlotRepository timeSlotRepository;
 
     @InjectMocks
-    private TimeSlotService timeSlotService = new TImeSlotServiceImpl();
+    private TimeSlotService timeSlotService = new TimeSlotServiceImpl();
 
     private List<TimeSlot> timeSlots = Arrays.asList(
             new TimeSlot("AM", "Morning class", new Time(10), new Time(12)),

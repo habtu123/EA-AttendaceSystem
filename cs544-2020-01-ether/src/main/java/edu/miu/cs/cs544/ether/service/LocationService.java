@@ -14,4 +14,6 @@ public interface LocationService {
     public void deleteLocation(Long locationId);
 
     public Location updateLocation(Location updatedLocation);
+
+	Location getLocationByCourseOffering(Long courseOfferingId);
 }

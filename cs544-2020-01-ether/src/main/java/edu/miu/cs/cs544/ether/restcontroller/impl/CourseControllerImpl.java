@@ -29,7 +29,7 @@ public class CourseControllerImpl implements CourseController {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
-    @GetMapping(value = "/Courses", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/courses", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public List<Course> getCourses() {
         List<Course> courses = new ArrayList<>();

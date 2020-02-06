@@ -29,7 +29,10 @@ public class CourseOffering {
 	private Date endDate;
 	@ManyToOne
 	private Student student;
+	@ManyToOne
+	private Location location;
 	
+
 	public CourseOffering() {
 		
 	}
@@ -41,8 +44,17 @@ public class CourseOffering {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public Location getLocation() {
+		return location;
+	}
 
-	public CourseOffering(Long courseOfferingId, Course course, Date startDate, Date endDate, Student student) {
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+
+	public CourseOffering(Long courseOfferingId, Course course, Date startDate, Date endDate, Student student, Location location) {
 		this.courseOfferingId = courseOfferingId;
 		this.course = course;
 		this.startDate = startDate;

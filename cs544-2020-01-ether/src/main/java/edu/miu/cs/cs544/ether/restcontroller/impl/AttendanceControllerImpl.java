@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.miu.cs.cs544.ether.dal.entity.Attendance;
 import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
+import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.restcontroller.AttendanceController;
 import edu.miu.cs.cs544.ether.restcontroller.CourseOfferingController;
@@ -75,7 +76,7 @@ public class AttendanceControllerImpl implements AttendanceController {
          @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId) {
+	public List<Student> getAttendances(@PathVariable Long courseOfferingId) {
 		try {
 			return attendanceService.getAttendances(courseOfferingId);
 		} catch (Exception e) {
