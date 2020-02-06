@@ -7,7 +7,7 @@ import edu.miu.cs.cs544.ether.dal.entity.Attendance;
 import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
 
 public interface AttendanceController {
-	List<Attendance> getAttendances();
+	List<Attendance> getAttendances() throws Exception;
 	List<Attendance> getAttendances(Long courseOfferingId, String studentId);
 	List<Attendance> getAttendances(Long courseOfferingId);
 	List<Attendance> getAttendance(String studentId);

@@ -11,4 +11,5 @@ public interface CourseOfferingController {
 	CourseOffering createCourseOffering(CourseOffering courseOffering) throws Exception;
 	CourseOffering getCourseOffering(long courseOfferingId);
 	CourseOffering updateCourseOffering(CourseOffering courseOffering);
+	List<CourseOffering> getCourseOfferings(String courseId);
 }

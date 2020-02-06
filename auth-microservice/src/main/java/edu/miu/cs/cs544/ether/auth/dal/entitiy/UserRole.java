@@ -7,14 +7,45 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public @Data class UserRole {
+public class UserRole {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String role;
     @ManyToOne
-    @JoinColumn(name = "username")
     private User user;
+    
+    public UserRole() {
+    	
+    }
+
+	public UserRole(String role, User user) {
+		this.role = role;
+		this.user = user;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}	
+    
 }

@@ -15,9 +15,9 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private TimeSlot timeSlot;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private CourseOffering courseOffering;
     
     public Session() {

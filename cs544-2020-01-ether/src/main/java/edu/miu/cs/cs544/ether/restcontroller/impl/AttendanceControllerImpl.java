@@ -35,30 +35,25 @@ public class AttendanceControllerImpl implements AttendanceController {
 
 	@ApiOperation(value = "Get a list of all attendances", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 401, message = "You are not X-API-Keyorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	 @ApiImplicitParams({
-         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	@ApiImplicitParams({
+         @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
-	public List<Attendance> getAttendances() {
-		try {
-			return attendanceService.getAttendances();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public List<Attendance> getAttendances() throws Exception {
+		return attendanceService.getAttendances();
+		
 	}
 	
 	@ApiOperation(value = "Get attendance for a student for a course offering", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 401, message = "You are not X-API-Keyorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	 @ApiImplicitParams({
-         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+         @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances/{courseOfferingId}/{studentId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId, @PathVariable String studentId) {
@@ -73,11 +68,11 @@ public class AttendanceControllerImpl implements AttendanceController {
 
 	@ApiOperation(value = "Get specific courseoffering", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 401, message = "You are not X-API-Keyorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	 @ApiImplicitParams({
-         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+         @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/attendances/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendances(@PathVariable Long courseOfferingId) {
@@ -92,11 +87,11 @@ public class AttendanceControllerImpl implements AttendanceController {
 
 	@ApiOperation(value = "Get all the attendance of a student", response = List.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 401, message = "You are not X-API-Keyorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@ApiImplicitParams({
-         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+         @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
  	@GetMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<Attendance> getAttendance(@RequestParam(value="studentId") String studentId) {
@@ -111,11 +106,11 @@ public class AttendanceControllerImpl implements AttendanceController {
 
 	@ApiOperation(value = "take attendance of a student", response = Attendance.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
-			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 401, message = "You are not X-API-Keyorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@ApiImplicitParams({
-         @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+         @ApiImplicitParam(name = "X-API-Key ", value = "JWT X-API-Key Token", required = true, dataType = "string", paramType = "header") })
 	@PostMapping(value = "/attendance", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public Attendance takeAttendance(@RequestParam(value="barCodeId") String barCodeId,
