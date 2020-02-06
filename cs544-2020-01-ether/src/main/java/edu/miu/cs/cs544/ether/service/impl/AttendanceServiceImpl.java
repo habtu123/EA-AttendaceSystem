@@ -8,7 +8,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs.cs544.ether.dal.entity.Attendance;
 import edu.miu.cs.cs544.ether.dal.entity.Location;
@@ -40,6 +43,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	private CourseOfferingService courseOfferingService;
 	
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendances() {
 		List<Attendance> attendance = attendanceRepository.findAll();
 		if(attendance != null)
@@ -48,6 +53,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendances(Long courseOfferingId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -56,6 +63,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 	
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendance(String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -64,6 +73,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendances(Long courseOfferingId, String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -73,6 +84,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Attendance takeAttendance(String barCodeId, String date, String timeAbbvr, String locationId) throws Exception {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 		

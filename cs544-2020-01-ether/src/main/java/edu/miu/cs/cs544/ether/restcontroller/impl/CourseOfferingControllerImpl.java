@@ -17,6 +17,8 @@ import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.restcontroller.CourseOfferingController;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
 import edu.miu.cs.cs544.ether.service.TimeSlotService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,17 +33,21 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/courseofferings", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<CourseOffering> getCourseOfferings() {
 		return courseOfferingService.getCourseOfferings();
 	}
-	
+
 	@ApiOperation(value = "Get specific courseoffering", response = CourseOffering.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved courseoffering"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/courseofferings/{courseOfferingId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public CourseOffering getCourseOffering(@PathVariable long courseOfferingId) {
@@ -53,6 +59,8 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@GetMapping(value = "/courseofferings/course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public List<CourseOffering> getCourseOfferings(@PathVariable long courseId) {
@@ -64,6 +72,8 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@PostMapping(value = "/courseofferings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public CourseOffering createCourseOffering(@RequestBody CourseOffering courseOffering) throws Exception {
@@ -75,6 +85,8 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@DeleteMapping(value = "/courseofferings/course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public void deleteCourseOffering(@PathVariable long courseOfferingId) {
@@ -86,6 +98,8 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	@PutMapping(value = "/courseofferings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Override
 	public CourseOffering updateCourseOffering(@RequestBody CourseOffering courseOffering) {

@@ -4,6 +4,8 @@ import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.exception.StudentNotFoundException;
 import edu.miu.cs.cs544.ether.restcontroller.StudentController;
 import edu.miu.cs.cs544.ether.service.StudentService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -25,6 +27,8 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @GetMapping(value = "/Students", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     //@Secured({"ROLE_ADMIN","ROLE_FACULTY"})
@@ -49,6 +53,8 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @GetMapping(value="/Students/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Student getByStudentId(@PathVariable  String StudentId) throws StudentNotFoundException  {
@@ -60,7 +66,9 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/Students",consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -75,6 +83,8 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @PutMapping(value = "/Students/StudentId/{StudentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public Student update(@RequestBody @Valid Student Student,@PathVariable String StudentId ) throws StudentNotFoundException {
@@ -90,6 +100,8 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @DeleteMapping(value = "/Students/StudentId/{StudentId}")
     public void delete(@PathVariable String StudentId) {

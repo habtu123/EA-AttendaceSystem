@@ -3,6 +3,8 @@ package edu.miu.cs.cs544.ether.restcontroller.impl;
 import edu.miu.cs.cs544.ether.dal.entity.Course;
 import edu.miu.cs.cs544.ether.restcontroller.CourseController;
 import edu.miu.cs.cs544.ether.service.CourseService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -24,6 +26,9 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @GetMapping(value = "/Courses", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public List<Course> getCourses() {
@@ -43,6 +48,9 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @GetMapping(value = "/Course/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Course getCourse(@PathVariable Long id) {
@@ -61,6 +69,9 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @GetMapping(value = "/Course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Course getCourse(@PathVariable String courseId) {
@@ -79,6 +90,9 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @PostMapping(value = "/Course", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Course saveCourse(@RequestBody Course course) {
@@ -99,6 +113,9 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	
     @DeleteMapping(value = "/Course/{courseId}")
     @Override
     public void deleteCourse(@PathVariable String courseId) {

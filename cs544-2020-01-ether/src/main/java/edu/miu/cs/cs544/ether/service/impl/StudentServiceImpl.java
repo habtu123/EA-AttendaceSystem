@@ -6,6 +6,7 @@ import edu.miu.cs.cs544.ether.dal.repository.StudentRepository;
 import edu.miu.cs.cs544.ether.exception.StudentNotFoundException;
 import edu.miu.cs.cs544.ether.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,8 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
+    @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Student> getAll() throws StudentNotFoundException {
         List<Student> students = studentRepository.findAll();
         if(students == null)
@@ -31,13 +34,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional(readOnly =true)
+    @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+    @PreAuthorize("hasRole('ADMIN')")
     public Student getStudentBy(Predicate<Student> predicate) throws StudentNotFoundException {
         return null;
     }
 
     @Override
-    @Transactional(readOnly =true)
+    @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+    @PreAuthorize("hasRole('ADMIN')")
     public Student getByStudentId(String studentId) throws StudentNotFoundException {
         Optional<Student> student=studentRepository.findAll().stream().filter(x->x.getStudentId().equals((studentId))).findFirst();
         Student result = null;
@@ -50,7 +55,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+    @PreAuthorize("hasRole('ADMIN')")
     public Student getById(Long Id) throws StudentNotFoundException {
         Optional<Student> student=studentRepository.findById(Id);
         student.orElseThrow(()->new StudentNotFoundException("No Student Record Found."));
@@ -59,12 +65,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public Student create(@Valid Student student) {
         return studentRepository.save(student);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public Student update(@Valid Student student) {
         Student studentUpdated= studentRepository.save(student);
         return studentUpdated;
@@ -72,6 +80,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(Student student) {
         studentRepository.delete(student);
     }

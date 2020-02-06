@@ -5,7 +5,9 @@ import edu.miu.cs.cs544.ether.dal.repository.CourseRepository;
 import edu.miu.cs.cs544.ether.exception.CourseNotFoundException;
 import edu.miu.cs.cs544.ether.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,7 +20,8 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Override
-    @Transactional
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Course> getCourses() throws CourseNotFoundException {
         List<Course> courses = courseRepository.findAll();
         if (courses == null || courses.size() == 0)
@@ -27,7 +30,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public Course getCourse(Long id) throws CourseNotFoundException {
         Course course = courseRepository.getOne(id);
         if (course == null)
@@ -36,7 +40,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public Course getCourse(String courseId) throws CourseNotFoundException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();
@@ -46,7 +51,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional()
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public Course saveCourse(Course course) throws RuntimeException {
         System.out.println(course);
 
@@ -57,13 +63,15 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteCourse(String courseId) throws RuntimeException {
         Optional<Course> course = getCourses().stream()
                 .filter(a -> a.getCourseId().equals(courseId)).findFirst();

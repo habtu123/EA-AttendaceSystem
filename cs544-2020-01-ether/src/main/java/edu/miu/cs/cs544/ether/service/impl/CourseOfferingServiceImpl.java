@@ -6,7 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs.cs544.ether.dal.entity.CourseOffering;
 import edu.miu.cs.cs544.ether.dal.repository.CourseOfferingRepository;
@@ -27,6 +30,8 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	private CourseService courseService;
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<CourseOffering> getCourseOfferings() {
 		List<CourseOffering> courseOfferings = courseOfferingRepository.findAll();
 		if(courseOfferings != null)
@@ -35,12 +40,16 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<CourseOffering> getCourseOfferings(long courseId) {
 		return courseOfferingRepository.findAll().stream().filter(c -> c.getCourse().getId().equals(courseId))
 				.collect(Collectors.toList());
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteCourseOffering(long courseOfferingId) {
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOfferingId)).findFirst();
@@ -50,6 +59,8 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering getCourseOffering(long courseOfferingId) {
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOfferingId)).findFirst();
@@ -60,6 +71,8 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering updateCourseOffering(CourseOffering courseOffering){
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOffering.getId())).findFirst();
@@ -74,6 +87,8 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 	}
 
 	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering createCourseOffering(CourseOffering courseOffering) throws Exception {
 		if(courseOffering == null) {
 			throw new Exception("Course offering cannot be empty");
