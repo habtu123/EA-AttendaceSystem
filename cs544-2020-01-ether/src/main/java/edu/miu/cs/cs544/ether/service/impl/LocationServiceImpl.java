@@ -18,21 +18,21 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Location addLocation(Location newLocation){
         return locationRepository.save(newLocation);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<Location> getLocations(){
         return locationRepository.findAll();
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Location getLocationById(Long locationId){
 
         return locationRepository.findById(locationId).get();
@@ -40,14 +40,14 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteLocation(Long locationId){
         locationRepository.deleteById(locationId);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Location updateLocation(Location updatedLocation){
 
         return  locationRepository.save(updatedLocation);

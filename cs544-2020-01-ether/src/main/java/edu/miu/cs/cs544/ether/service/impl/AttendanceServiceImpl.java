@@ -45,7 +45,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public List<Attendance> getAttendances() {
 		List<Attendance> attendance = attendanceRepository.findAll();
 		
@@ -56,7 +56,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public List<Attendance> getAttendances(Long courseOfferingId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -66,7 +66,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public List<Attendance> getAttendance(String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -76,7 +76,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public List<Attendance> getAttendances(Long courseOfferingId, String studentId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -87,7 +87,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Attendance takeAttendance(String barCodeId, String date, String timeAbbvr, String locationId) throws Exception {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 		

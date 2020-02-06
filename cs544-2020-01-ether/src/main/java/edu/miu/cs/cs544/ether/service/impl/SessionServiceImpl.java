@@ -20,35 +20,35 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void addSession(Session newSession){
         sessionRepository.save(newSession);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<Session> getSessions(){
         return sessionRepository.findAll();
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Session getSessionById(Long sessionId){
         return sessionRepository.getOne(sessionId);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteSession(Long sessionId){
         sessionRepository.deleteById(sessionId);
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void updateSession(Session updatedSession){
         sessionRepository.save(updatedSession);
     }

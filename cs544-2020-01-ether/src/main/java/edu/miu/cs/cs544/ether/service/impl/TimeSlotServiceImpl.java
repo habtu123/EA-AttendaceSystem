@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TImeSlotServiceImpl implements TimeSlotService {
+public class TimeSlotServiceImpl implements TimeSlotService {
     @Autowired
     private TimeSlotRepository timeSlotRepository;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = true)
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<TimeSlot> getAll() throws Exception {
         List<TimeSlot>  timeSlots = timeSlotRepository.findAll();
         if(timeSlots == null)
@@ -31,6 +31,7 @@ public class TImeSlotServiceImpl implements TimeSlotService {
 
     @Override
     @Transactional(propagation=Propagation.REQUIRES_NEW,readOnly=true)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public TimeSlot getById(String abbreviation) {
         Optional<TimeSlot> timeSlot=timeSlotRepository.findById(abbreviation);
         timeSlot.orElseThrow(()->new RuntimeException("No timeslot record found."));
@@ -39,12 +40,14 @@ public class TImeSlotServiceImpl implements TimeSlotService {
 
     @Override
     @Transactional(propagation=Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public TimeSlot create(@Valid TimeSlot timeSlot) {
        return timeSlotRepository.save(timeSlot);
     }
 
     @Override
     @Transactional(propagation=Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public TimeSlot update(TimeSlot timeSlot) {
         TimeSlot updatedTimeSlot=timeSlotRepository.save(timeSlot);
         return updatedTimeSlot;
@@ -52,6 +55,7 @@ public class TImeSlotServiceImpl implements TimeSlotService {
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(TimeSlot timeSlot) {
         timeSlotRepository.delete(timeSlot);
     }
