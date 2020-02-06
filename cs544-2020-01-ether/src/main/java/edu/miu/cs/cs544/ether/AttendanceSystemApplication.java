@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.ether;
 import com.google.common.base.Predicates;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -27,7 +28,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AttendanceSystemApplication {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         SpringApplication.run(AttendanceSystemApplication.class, args);
     }
 

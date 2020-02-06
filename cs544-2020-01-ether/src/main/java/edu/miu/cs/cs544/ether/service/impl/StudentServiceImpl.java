@@ -7,6 +7,7 @@ import edu.miu.cs.cs544.ether.exception.StudentNotFoundException;
 import edu.miu.cs.cs544.ether.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
@@ -67,7 +70,9 @@ public class StudentServiceImpl implements StudentService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Student create(@Valid Student student) {
-        return studentRepository.save(student);
+        Student stu = student;
+        stu.setPassword(passwordEncoder.encode(student.getPassword()));
+        return studentRepository.save(stu);
     }
 
     @Override

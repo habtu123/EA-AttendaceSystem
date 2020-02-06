@@ -28,7 +28,7 @@ public class User {
 	@NotEmpty(message = "lastname can not be empty")
     private String lastName;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@Valid
     private List<UserRole> roles;
     
