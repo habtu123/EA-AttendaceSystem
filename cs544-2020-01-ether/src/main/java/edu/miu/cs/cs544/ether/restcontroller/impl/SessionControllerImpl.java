@@ -21,7 +21,7 @@ public class SessionControllerImpl implements SessionController {
     private SessionService sessionService;
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public Session addSession(@RequestBody Session newSession){
         sessionService.addSession(newSession);
@@ -29,7 +29,7 @@ public class SessionControllerImpl implements SessionController {
     }
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Session> getSessions(){
         return sessionService.getSessions();
@@ -43,14 +43,14 @@ public class SessionControllerImpl implements SessionController {
     }
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @DeleteMapping(value = "/delete/{sessionId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteSession(@PathVariable Long sessionId){
         sessionService.deleteSession(sessionId);
     }
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @RequestMapping(value="/update/{sessionId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateSession(@PathVariable Long sessionId, @RequestBody Session updatedSession){
         //because this is a PUT, all fields are mandatory. Alternative would be to use the PATCH HTTP verb

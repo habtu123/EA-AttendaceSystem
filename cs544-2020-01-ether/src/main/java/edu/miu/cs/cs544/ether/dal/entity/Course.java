@@ -1,13 +1,17 @@
 package edu.miu.cs.cs544.ether.dal.entity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty (message = "Course Id can not be empty")
     private String courseId;
+    @NotEmpty(message = "Course name can not be empty")
     private String name;
 	@Lob
 	private String description;

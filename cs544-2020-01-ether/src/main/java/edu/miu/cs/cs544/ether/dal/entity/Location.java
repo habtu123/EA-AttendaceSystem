@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.ether.dal.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
 
@@ -10,16 +11,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Location{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	@NotEmpty(message = "Location Id can not be empty")
     private String locationId;
+	@NotEmpty(message = "Location name can not be empty")
     private String name;
+
     private String building;
     private String room;
+    @Min(1)
     private Integer capacity;
     
     public Location() {

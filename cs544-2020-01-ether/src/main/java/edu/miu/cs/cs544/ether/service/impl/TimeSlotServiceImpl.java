@@ -16,47 +16,47 @@ import java.util.Optional;
 
 @Service
 public class TimeSlotServiceImpl implements TimeSlotService {
-    @Autowired
-    private TimeSlotRepository timeSlotRepository;
+	@Autowired
+	private TimeSlotRepository timeSlotRepository;
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = true)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public List<TimeSlot> getAll() throws Exception {
-        List<TimeSlot>  timeSlots = timeSlotRepository.findAll();
-        if(timeSlots == null)
-            throw new Exception("No data of available.");
-        return timeSlots;
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+	@PreAuthorize("hasAnyAuthority('ADMIN','FACULITY')")
+	public List<TimeSlot> getAll() throws Exception {
+		List<TimeSlot> timeSlots = timeSlotRepository.findAll();
+		if (timeSlots == null)
+			throw new Exception("No data of available.");
+		return timeSlots;
+	}
 
-    @Override
-    @Transactional(propagation=Propagation.REQUIRES_NEW,readOnly=true)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public TimeSlot getById(String abbreviation) {
-        Optional<TimeSlot> timeSlot=timeSlotRepository.findById(abbreviation);
-        timeSlot.orElseThrow(()->new RuntimeException("No timeslot record found."));
-        return timeSlot.get();
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public TimeSlot getById(String abbreviation) {
+		Optional<TimeSlot> timeSlot = timeSlotRepository.findById(abbreviation);
+		timeSlot.orElseThrow(() -> new RuntimeException("No timeslot record found."));
+		return timeSlot.get();
+	}
 
-    @Override
-    @Transactional(propagation=Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public TimeSlot create(@Valid TimeSlot timeSlot) {
-       return timeSlotRepository.save(timeSlot);
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public TimeSlot create(@Valid TimeSlot timeSlot) {
+		return timeSlotRepository.save(timeSlot);
+	}
 
-    @Override
-    @Transactional(propagation=Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public TimeSlot update(TimeSlot timeSlot) {
-        TimeSlot updatedTimeSlot=timeSlotRepository.save(timeSlot);
-        return updatedTimeSlot;
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public TimeSlot update(TimeSlot timeSlot) {
+		TimeSlot updatedTimeSlot = timeSlotRepository.save(timeSlot);
+		return updatedTimeSlot;
+	}
 
-    @Override
-    @Transactional(propagation= Propagation.REQUIRES_NEW)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void delete(TimeSlot timeSlot) {
-        timeSlotRepository.delete(timeSlot);
-    }
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public void delete(TimeSlot timeSlot) {
+		timeSlotRepository.delete(timeSlot);
+	}
 }

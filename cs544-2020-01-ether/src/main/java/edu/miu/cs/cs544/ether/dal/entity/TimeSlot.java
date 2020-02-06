@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,11 +17,14 @@ import java.util.Date;
 @Entity
 public class TimeSlot {
     @Id
+	@NotEmpty(message = "Timeslot abbreviation can not be empty ")
     private String abbreviation;
     private String description;
     @Temporal(TemporalType.TIME)
+	@NotNull(message = "Timeslot starttime cannot be null")
     private Date startTime;
     @Temporal(TemporalType.TIME)
+	@NotNull(message = "Timeslot endtime cannot be null")
     private Date endTime;
     
     public TimeSlot() {
