@@ -18,6 +18,7 @@ import edu.miu.cs.cs544.ether.dal.entity.Location;
 import edu.miu.cs.cs544.ether.dal.entity.Student;
 import edu.miu.cs.cs544.ether.dal.entity.TimeSlot;
 import edu.miu.cs.cs544.ether.dal.repository.AttendanceRepository;
+import edu.miu.cs.cs544.ether.exception.CourseNotFoundException;
 import edu.miu.cs.cs544.ether.service.AttendanceService;
 import edu.miu.cs.cs544.ether.service.CourseOfferingService;
 import edu.miu.cs.cs544.ether.service.LocationService;
@@ -44,17 +45,18 @@ public class AttendanceServiceImpl implements AttendanceService {
 	
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendances() {
 		List<Attendance> attendance = attendanceRepository.findAll();
-		if(attendance != null)
-            return attendance;
-        return null;
+		
+		if(attendance == null)
+            throw new CourseNotFoundException("Attendance not found");
+        return attendance;
 	}
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendances(Long courseOfferingId) {
 		return attendanceRepository.findAll()
 				.stream()
@@ -64,7 +66,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public List<Attendance> getAttendance(String studentId) {
 		return attendanceRepository.findAll()
 				.stream()

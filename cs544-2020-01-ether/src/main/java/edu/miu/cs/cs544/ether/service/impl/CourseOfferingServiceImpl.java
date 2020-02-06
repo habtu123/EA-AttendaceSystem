@@ -31,7 +31,7 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public List<CourseOffering> getCourseOfferings() {
 		List<CourseOffering> courseOfferings = courseOfferingRepository.findAll();
 		if(courseOfferings != null)
@@ -41,15 +41,23 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public List<CourseOffering> getCourseOfferings(long courseId) {
 		return courseOfferingRepository.findAll().stream().filter(c -> c.getCourse().getId().equals(courseId))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
+	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
+	//@PreAuthorize("hasRole('ADMIN')")
+	public List<CourseOffering> getCourseOfferings(String courseId) {
+		return courseOfferingRepository.findAll().stream().filter(c -> c.getCourse().getCourseId().equals(courseId))
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public void deleteCourseOffering(long courseOfferingId) {
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOfferingId)).findFirst();
@@ -60,7 +68,7 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW, readOnly =true)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering getCourseOffering(long courseOfferingId) {
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOfferingId)).findFirst();
@@ -72,7 +80,7 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering updateCourseOffering(CourseOffering courseOffering){
 		Optional<CourseOffering> course = courseOfferingRepository.findAll().stream()
 				.filter(c -> c.getCourseOfferingId().equals(courseOffering.getId())).findFirst();
@@ -88,7 +96,7 @@ public class CourseOfferingServiceImpl implements CourseOfferingService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRES_NEW)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public CourseOffering createCourseOffering(CourseOffering courseOffering) throws Exception {
 		if(courseOffering == null) {
 			throw new Exception("Course offering cannot be empty");

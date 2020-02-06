@@ -11,14 +11,60 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public @Data  class TimeSlot {
+public class TimeSlot {
     @Id
-    private String abberiviation;
+    private String abbreviation;
     private String description;
     @Temporal(TemporalType.TIME)
-    private Date startTimel;
+    private Date startTime;
     @Temporal(TemporalType.TIME)
     private Date endTime;
+    
+    public TimeSlot() {
+    	
+    }
+
+	public TimeSlot(String abbreviation, String description, Date startTime, Date endTime) {
+		this.abbreviation = abbreviation;
+		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	
+	
+    
+    
+    
 }

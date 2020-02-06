@@ -66,6 +66,19 @@ public class CourseOfferingControllerImpl implements CourseOfferingController {
 	public List<CourseOffering> getCourseOfferings(@PathVariable long courseId) {
 		return courseOfferingService.getCourseOfferings(courseId);
 	}
+	
+	@ApiOperation(value = "Get a list of courseofferings for a course", response = List.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+	@GetMapping(value = "/courseofferings/course/id/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@Override
+	public List<CourseOffering> getCourseOfferings(@PathVariable String courseId) {
+		return courseOfferingService.getCourseOfferings(courseId);
+	}
 
 	@ApiOperation(value = "Create a new course offering", response = CourseOffering.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully created courseoffering"),

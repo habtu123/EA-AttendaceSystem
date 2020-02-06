@@ -14,13 +14,13 @@ public class CourseOffering {
 	private Long id;
 	private Long courseOfferingId;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Course course;
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Student student;
 	
 	public CourseOffering() {

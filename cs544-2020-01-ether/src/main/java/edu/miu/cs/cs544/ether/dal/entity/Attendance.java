@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -15,6 +17,16 @@ public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne()
+    @JoinColumn(name = "barCodeId", referencedColumnName = "barCodeId")
+    private Student student;
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @ManyToOne
+    private Location location;
+    @ManyToOne
+    private TimeSlot timeSlot;
+    
     public Attendance(Student student, Date date, Location location, TimeSlot timeSlot) {
 		this.student = student;
 		this.date = date;
@@ -54,13 +66,5 @@ public class Attendance {
 	public void setTimeSlot(TimeSlot timeSlot) {
 		this.timeSlot = timeSlot;
 	}
-	@ManyToOne()
-    @JoinColumn(name = "barCodeId", referencedColumnName = "barCodeId")
-    private Student student;
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Location location;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private TimeSlot timeSlot;
+	
 }

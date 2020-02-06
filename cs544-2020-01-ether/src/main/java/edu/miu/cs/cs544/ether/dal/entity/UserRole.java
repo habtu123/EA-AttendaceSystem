@@ -12,7 +12,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String role;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
     
     public UserRole() {

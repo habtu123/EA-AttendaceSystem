@@ -21,7 +21,7 @@ public class TImeSlotServiceImpl implements TimeSlotService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = true)
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasAnyRole('ADMIN')")
     public List<TimeSlot> getAll() throws Exception {
         List<TimeSlot>  timeSlots = timeSlotRepository.findAll();
         if(timeSlots == null)
