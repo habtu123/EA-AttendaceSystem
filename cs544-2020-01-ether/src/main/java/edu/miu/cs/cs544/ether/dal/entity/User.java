@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,12 +19,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "username can not be empty")
     private String username;
+	@NotEmpty(message = "password can not be empty")
     private String password;
+	@NotEmpty(message = "firstname can not be empty")
     private String firstName;
+	@NotEmpty(message = "lastname can not be empty")
     private String lastName;
 
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+	@Valid
     private List<UserRole> roles;
     
 	public User(String username, String password, List<UserRole> roles) {

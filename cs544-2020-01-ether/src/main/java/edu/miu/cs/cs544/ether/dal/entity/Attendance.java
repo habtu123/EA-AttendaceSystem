@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -19,12 +21,16 @@ public class Attendance {
     private Long id;
     @ManyToOne()
     @JoinColumn(name = "barCodeId", referencedColumnName = "barCodeId")
+	@Valid
     private Student student;
     @Temporal(TemporalType.DATE)
+	@NotEmpty(message = "Date can not be empty")
     private Date date;
     @ManyToOne
+	@Valid
     private Location location;
     @ManyToOne
+	@Valid
     private TimeSlot timeSlot;
     
     public Attendance(Student student, Date date, Location location, TimeSlot timeSlot) {

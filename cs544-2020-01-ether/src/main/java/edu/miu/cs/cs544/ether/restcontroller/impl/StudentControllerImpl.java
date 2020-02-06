@@ -54,7 +54,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @GetMapping(value="/Students/StudentId/{StudentId}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Student getByStudentId(@PathVariable  String StudentId) throws StudentNotFoundException  {
@@ -67,7 +67,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/Students",consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -84,7 +84,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @PutMapping(value = "/Students/StudentId/{StudentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public Student update(@RequestBody @Valid Student Student,@PathVariable String StudentId ) throws StudentNotFoundException {
@@ -101,7 +101,7 @@ public class StudentControllerImpl implements StudentController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @DeleteMapping(value = "/Students/StudentId/{StudentId}")
     public void delete(@PathVariable String StudentId) {

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,10 +17,13 @@ public class Session {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	@NotNull(message = "Sesstion date can not be null ")
     private Date date;
     @ManyToOne
+	@Valid
     private TimeSlot timeSlot;
     @ManyToOne
+	@Valid
     private CourseOffering courseOffering;
     
     public Session() {

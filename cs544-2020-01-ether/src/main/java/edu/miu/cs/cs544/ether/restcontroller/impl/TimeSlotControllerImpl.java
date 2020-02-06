@@ -18,12 +18,13 @@ import java.util.List;
 public class TimeSlotControllerImpl implements TimeSlotController {
     @Autowired
     private TimeSlotService timeSlotService;
+
     @ApiOperation(value = "View a list of available time slot", response = List.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Status 200"),
             @ApiResponse(code = 400, message = "Status 400"), @ApiResponse(code = 404, message = "Status 404"),
             @ApiResponse(code = 500, message = "Status 500") })
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+            @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @GetMapping(value = "/timeslots", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TimeSlot> getAll() throws Exception {
@@ -36,7 +37,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @GetMapping(value="/timeslots/abbreviation/{abbreviation}",produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public TimeSlot getById(@PathVariable String abbreviation) {
@@ -49,7 +50,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/timeslots",consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -63,7 +64,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @PutMapping(value = "/timeslots/abbreviation/{abbreviation}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public TimeSlot update(@RequestBody @Valid TimeSlot timeSlot,@PathVariable String abbreviation ) {
@@ -79,7 +80,7 @@ public class TimeSlotControllerImpl implements TimeSlotController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
     @Override
     @DeleteMapping(value = "/timeslots/abbreviation/{abbreviation}")
     public void delete(@PathVariable String abbreviation) {

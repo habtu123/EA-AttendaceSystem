@@ -27,7 +27,7 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @GetMapping(value = "/Courses", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -49,7 +49,7 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @GetMapping(value = "/Course/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -70,7 +70,7 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @GetMapping(value = "/Course/{courseId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -91,7 +91,7 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @PostMapping(value = "/Course", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -114,7 +114,7 @@ public class CourseControllerImpl implements CourseController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")})
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "Auth ", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
+        @ApiImplicitParam(name = "X-API-Key", value = "JWT Auth Token", required = true, dataType = "string", paramType = "header") })
 	
     @DeleteMapping(value = "/Course/{courseId}")
     @Override

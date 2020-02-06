@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -12,13 +15,17 @@ public class CourseOffering {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull(message = "Course offering Id can not null")
 	private Long courseOfferingId;
 
 	@ManyToOne
+	@Valid
 	private Course course;
 	@Temporal(TemporalType.DATE)
+	@NotEmpty
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
+	@NotEmpty
 	private Date endDate;
 	@ManyToOne
 	private Student student;
