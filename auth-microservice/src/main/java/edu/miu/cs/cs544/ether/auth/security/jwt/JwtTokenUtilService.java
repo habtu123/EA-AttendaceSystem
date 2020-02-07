@@ -142,17 +142,17 @@ public class JwtTokenUtilService implements Serializable
   return token;
 
  }
-
- public Boolean validateToken(String token, UserDetails userDetails)
- {
-  final String username = getUsernameFromToken(token);
-  // Token is expired
-  if (username == null) {
-   return false;
-  }
-  final String usernameTrimmed = username.trim();
-  final MyPrncipalUser user = (MyPrncipalUser) userDetails;
-  String jwtUsername = user.getUsername().trim();
-  return (jwtUsername.equals(usernameTrimmed));
- }
+//
+// public Boolean validateToken(String token, UserDetails userDetails)
+// {
+//  final String username = getUsernameFromToken(token);
+//  // Token is expired
+//  if (username == null) {
+//   return false;
+//  }
+//  final String usernameTrimmed = username.trim();
+//  final MyPrncipalUser user = (MyPrncipalUser) userDetails;
+//  String jwtUsername = user.getUsername().trim();
+//  return (jwtUsername.equals(usernameTrimmed));
+// }
 }

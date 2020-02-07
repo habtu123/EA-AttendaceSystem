@@ -106,43 +106,6 @@ public class JwtTokenUtilService implements Serializable
   return claims;
  }
 
- public String generateToken(UserDetails userDetails)
- {
-  PrivateKey privateKey = null;
-  String token = null;
-  try {
-   privateKey = jwtRsaUtils.getPrivateKey();
-  } catch (NoSuchAlgorithmException | InvalidKeySpecException | IOException e) {
-   throw new UnauthorizedRequestException(e.getMessage());
-  }
-  JwtClaims jwtClaims = new JwtClaims();
-  jwtClaims.setClaim(CLAIM_KEY_USERNAME, userDetails.getUsername());
-  final List<String> auth = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
-    .collect(Collectors.toList());
-  jwtClaims.setClaim(CLAIM_KEY_AUTHORITIES, auth);
-  jwtClaims.setClaim(CLAIM_KEY_IS_ENABLED, userDetails.isEnabled());
-  jwtClaims.setSubject(userDetails.getUsername());
-  jwtClaims.setExpirationTimeMinutesInTheFuture(expiration);
-  jwtClaims.setGeneratedJwtId(); // a unique identifier for the token
-  jwtClaims.setIssuedAtToNow();
-  jwtClaims.setClaim(CLAIM_SCOPE, "ETHER");
-
-  JsonWebSignature jws = new JsonWebSignature();
-  jws.setAlgorithmHeaderValue("RS256");
-  jws.setKey(privateKey);
-  jws.setPayload(jwtClaims.toJson());
-  jws.setKey(privateKey);
-
-  try {
-   token = jws.getCompactSerialization();
-  } catch (JoseException e) {
-   throw new UnauthorizedRequestException(e.getMessage());
-  }
-
-  return token;
-
- }
-
  public Boolean validateToken(String token, UserDetails userDetails)
  {
   final String username = getUsernameFromToken(token);

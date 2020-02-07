@@ -1,6 +1,5 @@
 package edu.miu.cs.cs544.ether.auth.security;
 
-import edu.miu.cs.cs544.ether.auth.security.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,9 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailService myUserDetailService;
-
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+//
+//    @Autowired
+//    private JwtRequestFilter jwtRequestFilter;
 
     private static final String[] AUTH_WHITELIST = {
 
@@ -60,6 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

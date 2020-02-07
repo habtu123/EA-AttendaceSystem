@@ -25,11 +25,6 @@ public class AutheticationContoller {
 
     @PostMapping(value = "/autheticate")
     public ResponseEntity<AutheticationResponse> createAutheticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
-//        try {
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
-//        }catch (BadCredentialsException e){
-//            throw new Exception("Incorete username or password", e);
-//        }
 
         final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtTokenUtilService.generateToken(userDetails);

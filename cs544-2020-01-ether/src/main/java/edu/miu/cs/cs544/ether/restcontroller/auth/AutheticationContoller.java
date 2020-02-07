@@ -44,7 +44,7 @@ public class AutheticationContoller {
         ResponseEntity<AutheticationResponse> jwt = restTemplate.postForEntity(authUrl, authenticationRequest, AutheticationResponse.class);
 
         final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtilService.generateToken(userDetails);
+//        final String token = jwtTokenUtilService.generateToken(userDetails);
 
         return jwt.getBody().getJwt();
     }

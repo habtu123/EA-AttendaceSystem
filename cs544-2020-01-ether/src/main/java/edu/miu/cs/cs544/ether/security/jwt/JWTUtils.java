@@ -28,34 +28,11 @@ public class JWTUtils implements Serializable
 
  private static final long serialVersionUID = 1905122041950251207L;
 
- @Value("${key.private.loc}")
- private String privateKeyLocation;
-
  @Value("${key.public.loc}")
  private String publicKeyLocation;
 
  private static String publicKeyBeing = "-----BEGIN PUBLIC KEY-----";
  private static String publicKeyEnd = "-----END PUBLIC KEY-----";
-
- private static String privateKeyBegin = "-----BEGIN PRIVATE KEY-----\n";
- private static String pivateKeyEnd = "-----END PRIVATE KEY-----";
-
- public PrivateKey getPrivateKey() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException
- {
-  PrivateKey privateKey = null;
-  String privateKeyContent = readKeyFromFile(privateKeyLocation);
-  System.out.println(privateKeyContent);
-  privateKeyContent = privateKeyContent.replace(privateKeyBegin, "");
-  privateKeyContent = privateKeyContent.replace(pivateKeyEnd, "").replaceAll("\\s", "");
-  byte[] encoded = Base64.getDecoder().decode(privateKeyContent.getBytes(StandardCharsets.UTF_8));
-
-  KeyFactory kf = KeyFactory.getInstance("RSA");
-
-  EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
-  privateKey = kf.generatePrivate(keySpec);
-
-  return privateKey;
- }
 
  public PublicKey parseRSAPublicKey() throws GeneralSecurityException, IOException
  {
